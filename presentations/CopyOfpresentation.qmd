@@ -71,7 +71,7 @@ title-slide-attributes:
 
 # LDR (PCA) {data-background="presentation_files/img/PGCSlideLight.svg" transition="fade-in slide-out" transition-speed="slow"}
 
-## Add details
+## Projection to basis
 
 # Clustering {data-background="presentation_files/img/PGCSlideLight.svg" transition="fade-in slide-out" transition-speed="slow"}
 
