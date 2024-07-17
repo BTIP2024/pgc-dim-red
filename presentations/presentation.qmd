@@ -89,7 +89,7 @@ title-slide-attributes:
 
 # Timetable {background-color="#447099" data-background="presentation_files/img/PGCTitleSlideDark.svg" transition="slide-in"}
 
-# Delete further slides
+# Delete further slide
 
 
 ## Team members attended this week's random talks on git, docker, and HPC access {data-background="presentation_files/img/PGCSlideLight.svg" transition="fade-in slide-out" transition-speed="islow"}
