@@ -85,7 +85,6 @@ title-slide-attributes:
 
 [//]: ![](presentation_files/img/burndown.svg){.fragment fig-align="center" height=60% width=60%}
 
-# Objectives {background-color="#447099" data-background="presentation_files/img/PGCTitleSlideDark.svg" transition="slide-in"}
 
 # Timetable {background-color="#447099" data-background="presentation_files/img/PGCTitleSlideDark.svg" transition="slide-in"}
 
