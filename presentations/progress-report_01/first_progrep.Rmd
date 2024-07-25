@@ -58,6 +58,7 @@ Deployed trial shiny package
 
 ---
 ```{r echo=FALSE}
+
 source("global.R")
 
 
@@ -80,12 +81,13 @@ ui <- dashboardPage(
     tabItems(
       tabItem(tabName = "input",
               tabsetPanel(id = "main_tabs",
-                          tabPanel("Instructions", 
+                          tabPanel("Instructions",
                                    includeMarkdown("instructions.Rmd")
-                                   ))),
+                                   )),
+              a("Download sample Seurat Object", href = "https://drive.google.com/uc?export=download&id=1IY46LGaVTkakZmwCzKzL4ol9bEQ3R0Z2")),
       tabItem(tabName = "home",
               tags$h1(HTML("--__..--..-- Welcome to scRNAseq Analyzer --..--..__--"))
-              
+
               )
     )
   )
@@ -93,9 +95,9 @@ ui <- dashboardPage(
 
 server <- function(input, output, session){
   options(shiny.maxRequestSize = 300*1024^2)
-  
+
   shinyjs::disable("run")
-  
+
   observe({
     if (is.null(input$file) != TRUE){
       shinyjs::enable("run")
@@ -103,15 +105,15 @@ server <- function(input, output, session){
       shinyjs::disable("run")
     }
   })
-  
+
   observeEvent(input$reset, {
     shinyjs::reset("file")
     shinyjs::disable("run")
   })
-  
+
   observeEvent(input$run, {
     shinyjs::disable("run")
-    
+
     show_modal_spinner(text = "Preparing plots...")
     obj <- load_seurat_obj(input$file$datapath)
     if (is.vector(obj)){
@@ -121,21 +123,21 @@ server <- function(input, output, session){
              paste(unlist(obj), collapse = "<br><br>"))
       ))
       shinyjs::enable("run")
-      
+
     } else {
-      
+
       output$umap <- renderPlot({
         if (!is.null(input$metadata_col)) {
           create_metadata_umap(obj, input$metadata_col)
         }
       })
-      
+
       output$featurePlot <- renderPlot({
         if (!is.null(input$gene)) {
           create_feature_plot(obj, input$gene)
         }
       })
-      
+
       output$downloadFeaturePlot <- downloadHandler(
         filename = function(){
           paste0(input$gene, '_feature_plot', '.png')
@@ -154,7 +156,7 @@ server <- function(input, output, session){
           ggsave(filename=file, width = 10, height = 5, type = "cairo")
         }
       )
-      
+
       insertTab(
         inputId = "main_tabs",
         tabPanel(
@@ -167,8 +169,8 @@ server <- function(input, output, session){
             ),
             column(
               width = 4,
-              selectizeInput("metadata_col", 
-                             "Metadata Column", 
+              selectizeInput("metadata_col",
+                             "Metadata Column",
                              colnames(obj@meta.data)
               )
             )
@@ -189,8 +191,8 @@ server <- function(input, output, session){
             ),
             column(
               width = 4,
-              selectizeInput("gene", 
-                             "Genes", 
+              selectizeInput("gene",
+                             "Genes",
                              rownames(obj)
               )
             )
@@ -198,13 +200,13 @@ server <- function(input, output, session){
           style = "height: 90%; width: 95%; padding-top: 5%;"
         )
       )
-      
+
       remove_modal_spinner()
       shinyjs::enable("run")
-      
+
     }
   })
-  
+
   # Clear all sidebar inputs when 'Reset' button is clicked
   observeEvent(input$reset, {
     shinyjs::reset("file")
@@ -212,10 +214,11 @@ server <- function(input, output, session){
     removeTab("main_tabs", "Gene Expression")
     shinyjs::disable("run")
   })
-  
+
 }
 
 shinyApp(ui, server)
+
 ```
 
 
