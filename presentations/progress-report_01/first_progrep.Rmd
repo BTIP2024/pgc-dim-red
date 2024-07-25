@@ -227,15 +227,14 @@ shinyApp(ui, server)
 -   Deploy the servers using Docker
     -   Containers for the trial package are on private and yet to
         establish a host connection
--   To improve and polish scripts for future deployment
+-   Improve and polish scripts for future deployment
 -   
 -   
 -   
 
 # Next week's to-do {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
 
--   Attend lectures
+-   Attend TechTalk lectures
 -   Test run main pipeline for pre-processing of scRNA using Seurat
     package
 -   Deploy the step/s of the pipeline using Docker
--   
