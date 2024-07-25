@@ -54,6 +54,8 @@ accessible in OpenCPU via Git](img/r_opencpu.png){width="536"}
 
 Deployed trial shiny package 
 
+[scRNA Analyzer](https://7w4750-tyrone-mariano.shinyapps.io/myapp/)
+
 ---
 ```{r echo=FALSE}
 source("global.R")
