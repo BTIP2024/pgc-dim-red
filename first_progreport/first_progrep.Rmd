@@ -1,0 +1,74 @@
+---
+title: "R Team"
+author: Mark Joseph Garrovillas (mentor), Leda Celeste Samin, and Tyrone Mariano
+output: 
+  ioslides_presentation:
+    widescreen: true
+    data-background-image: "img/Copy of QC.png"
+    data-bacgkround-size: cover
+date: "2024-07-24"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Shiny Server and OpenCPU Server for Dimensional Reduction Applications with an scRNAseq Bioinformatics Pipeline {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+# Outline {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+-   Project Recap
+
+-   Accomplishments
+
+-   Challenges
+
+-   Next Week's to-do
+
+## Project Recap {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+<font size="5">1. Develop and implement a bioinformatics pipeline
+
+-   Deploy RStudio, Shiny, and OpenCPU servers using Docker
+    -   Easy development and access: Access of the servers via a browser
+        using docker
+    -   From git, isolated and standalone applications can be started
+        via Docker
+
+2.  Expose a stateless microservice using RESTful API and RPC the major
+    steps in scRNAseq pipeline and their visualizations
+3.  Develop an interactive dashboard/reactive framework in Shiny for the
+    scRNA pre-processing pipeline</font>
+
+# Current Progress {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+------------------------------------------------------------------------
+
+Successful trial runs ![Developed trial R package that are deployed and
+accessible in OpenCPU via Git](img/r_opencpu.png){width="536"}
+
+---
+
+Deployed trial shiny package [insert here the code for the shiny package
+pls thanks]
+
+# Challenges {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+-   Deploy the servers using Docker
+    -   Containers for the trial package are on private and yet to
+        establish a host connection
+-   To improve and polish scripts for future deployment
+-   
+-   
+-   
+
+# Next week's to-do {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+-   Attend lectures
+-   Test run main pipeline for pre-processing of scRNA using Seurat
+    package
+-   Deploy the step/s of the pipeline using Docker
+-   
