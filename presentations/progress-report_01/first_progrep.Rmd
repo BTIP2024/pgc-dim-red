@@ -228,7 +228,7 @@ shinyApp(ui, server)
     -   Containers for the trial package are on private and yet to
         establish a host connection
 -   Improve and polish scripts for future deployment
--   
+-   Dockerizing an R package or a Shiny app
 -   
 -   
 
@@ -238,3 +238,4 @@ shinyApp(ui, server)
 -   Test run main pipeline for pre-processing of scRNA using Seurat
     package
 -   Deploy the step/s of the pipeline using Docker
+-   Explore more Dockerfile recipes
