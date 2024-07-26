@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## **Shiny Server and OpenCPU Server for Dimensional Reduction Applications with an scRNAseq Bioinformatics Pipeline** {data-background="img/Copy of QC.png" data-background-size="cover"}
 
-# Outline {data-background="img/Copy of QC.png" data-background-size="cover" style="color: black"}
+## Outline {data-background="img/Copy of QC.png" data-background-size="cover" style="color: black"}
 
 -   Project Recap
 
@@ -236,14 +236,14 @@ server <- function(input, output, session){
 shinyApp(ui, server)
 ```
 
-# Challenges {data-background="img/Copy of QC.png" data-background-size="cover"}
+## Challenges {data-background="img/Copy of QC.png" data-background-size="cover"}
 
 -   Deploy the servers using Docker
     -   Containers for the trial package are on private and yet to
         establish a host connection
 -   Improve and polish scripts for future deployment
 
-# Next week's to-do {data-background="img/Copy of QC.png" data-background-size="cover"}
+## Next week's to-do {data-background="img/Copy of QC.png" data-background-size="cover"}
 
 -   Attend TechTalk lectures
 -   Test run main pipeline for pre-processing of scRNA using Seurat
