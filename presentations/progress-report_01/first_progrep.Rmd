@@ -47,14 +47,25 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ------------------------------------------------------------------------
 
-Successful trial runs ![Developed trial R package that are deployed and
+# Successful trial runs {data-background="img/Copy of QC.png" data-background-size="cover" style="color: white"}
+
+---
+
+![Developed trial R package that are deployed and
 accessible in OpenCPU via Git](img/r_opencpu.png){width="536"}
 
 ---
 
-Deployed trial shiny package 
+R package in Docker
 
-[scRNA Analyzer](https://7w4750-tyrone-mariano.shinyapps.io/myapp/)
+<div class="columns-2"
+![](img/docker_image.png)
+
+![](img/docker_container.png)
+
+---
+
+![Deployed trial shiny package: scRNA Analyzer](https://7w4750-tyrone-mariano.shinyapps.io/myapp/)
 
 ---
 ```{r echo=FALSE}
