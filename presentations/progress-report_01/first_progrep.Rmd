@@ -58,11 +58,11 @@ accessible in OpenCPU via Git](img/r_opencpu.png){width="536"}
 
 R package in Docker
 
-<div class="columns-2"
+<div class="columns-2">
 ![](img/docker_image.png)
 
 ![](img/docker_container.png)
-
+</div>
 ---
 
 ![Deployed trial shiny package: scRNA Analyzer](https://7w4750-tyrone-mariano.shinyapps.io/myapp/)
