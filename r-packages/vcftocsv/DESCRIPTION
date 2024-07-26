@@ -1,0 +1,6 @@
+Package: VCFtoCSV
+Type: Package
+Title: VCF to CSV files Conversion
+Version: 0.0.1.0
+Encoding: UTF-8
+RoxygenNote: 7.3.2
