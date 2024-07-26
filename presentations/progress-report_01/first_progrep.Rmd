@@ -6,7 +6,7 @@ output:
     widescreen: true
     data-background-image: "img/Copy of QC.png"
     data-bacgkround-size: cover
-date: "2024-07-24"
+date: "July 26, 2024"
 editor_options: 
   markdown: 
     wrap: 72
