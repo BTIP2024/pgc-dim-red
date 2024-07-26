@@ -228,7 +228,7 @@ shinyApp(ui, server)
     -   Containers for the trial package are on private and yet to
         establish a host connection
 -   Improve and polish scripts for future deployment
--   Dockerizing an R package or a Shiny app
+-   
 -   
 -   
 
