@@ -1,0 +1,83 @@
+/*-- scss:defaults --*/
+
+
+$theme-darkblue: #0e0;
+$theme-blue: #99D9DD;
+$theme-white: #000000;
+$theme-yellow: #F4BA02;
+
+$body-bg: $theme-darkblue;
+$body-color: $theme-white;
+$link-color: $theme-blue;
+$presentation-heading-color: #272222;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+
+$presentation-heading-font: 'Lexend Deca Regula', sans-serif;
+$mainFont: 'Lexend Deca Regular', sans-serif;
+/*-- scss:rules --*/
+
+.reveal .slide-number {
+  color: $link-color;
+}
+
+#title-slide .title{
+  color: #272222;
+}
+
+.quarto-title-author-name {
+  color: #272222;
+}
+
+.date {
+  color: #272222;
+}
+
+/*
+.reveal .footer {
+  font-size: 0.35em !important;
+  text-align: right !important;
+}
+*/
+.reveal .slides section .fragment .semi-fade-out {
+	opacity: 1;
+	visibility: inherit;
+
+	&.visible {
+		opacity: 0.25;
+		visibility: inherit;
+	}
+}
+
+
+.sectionhead {
+  font-size: 1em;
+  text-align: center;
+  color: #f5f522;
+  font-family: $presentation-heading-font;
+  margin: 1px;
+  padding: 20px 20px 20px 20px;
+  width: 120px;
+  border-left: 10px solid;
+}
+
+.reval .custom-title {
+  position: absolute;
+  color: #000;
+  font-size: 3em;
+  text-align: right;
+  right: 20px;
+  top: -200px;
+}
+
+
+.blackbox {
+  color: #000000;
+  background-color: transparent;
+  margin: 1px;
+  padding: 5px 2px 5px 2px;
+  height: 205px;
+  border: 2px solid;
+}
+
