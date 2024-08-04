@@ -33,234 +33,86 @@ title-slide-attributes:
 
 # PROJECT RECAP {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## R has achieved a prominent role in statistics, <br> bioinformatics, and data science in general {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## Last Week's Accomplishments {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-::: columns
-::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
-:::
 
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
-:::
-
-::: {.column width="50%"}
 ::: {.fragment fragment-index="2"}
+- Proof of concept for building customized R package
 :::
 
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="60%" width="60%"}
-:::
+
+
+::: {.fragment fragment-index="3"}
+- Created a dashboard for some parts of the pipeline using Shiny 
 :::
 
-## Bioconductor is the next biggest R repository after the <br> primary repository CRAN {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: columns
+:::: {.columns}
 ::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
-One of the keys to R's success as a software environment for data analysis is the availability of user-contributed packages
-
--   The main CRAN repository cover common data analysis tasks, such as importing data and plotting, through to more specialized tasks, such as packages for parsing data from the web, analyzing financial time series data, or analyzing data from clinical trials
-
--   The next biggest R repository, Bioconductor is an open source, open development software project that focuses on providing tools for the analysis of high-throughput genomic data, (bioinformatics or computational biology) such as sequencing the DNA of human genomes or measuring the level of expression of genes in hundreds of tumors
-:::
+![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
 :::
 
 ::: {.column width="50%"}
-::: {.fragment fragment-index="2"}
-:::
-
-::: r-stack
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-
 ![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="3" fig-align="center" height="100%" width="100%"}
 :::
-:::
-:::
 
-## There is a need for standalone servers {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+::::
 
-::: columns
-::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
--   R and Python developers typically choose a standalone server to move beyond the memory and processing constraints of desktop versions of R and Python
+## scRNAseq Analyzer {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
--   R and Python libraries executing on a standalone server can load and process large amounts of data on multiple cores and aggregate the results into a single consolidated output
-
--   A separation of concerns can be implemented, with the data scientist focusing on specific application/computing code while the (web) developer can focus on the front-end and back-end implementation
-:::
-:::
-
-::: {.column width="50%"}
-::: {.fragment fragment-index="2"}
-:::
-
-::: r-stack
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="80%" width="80%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="3" fig-align="center" height="200%" width="200%"}
-:::
-:::
-:::
-
-## A client-server model divides tasks between servers and clients {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: columns
-::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
-In a client server model:
-
--   servers provides resources or services
--   clients requests the resources or services
-:::
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-:::
-
-::: {.column width="50%"}
-::: {.fragment fragment-index="3"}
-This model facilitates:
-
--   Resource Sharing: Servers consolidate resources (like databases, files, or processing power) for efficiency and control.
--   Flexible Clients: Clients can be diverse (web browsers, mobile apps, IoT devices), accessing services uniformly.
--   Scalability: Robust networks allow servers to handle increasing client demands.
--   Security: Centralized servers enhance security by controlling access and data flow.
-:::
-:::
-:::
-
-### There is a spectrum of choices for where to put most of the <br> interface logic and computation in a client server model {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
--   Pure client-side: The server merely serves static files. All the magic happens in Javascript, client-side. Example: Glimma
-
--   Microservices with Stateless RESTful API: The server does the heavy lifting, such as accessing large databases, but doesn't keep track of sessions and state.
-
--   Stateful server: The server has a session for each client. It may run a separate process per session. Puts a lot of load in the server but is very flexible.
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="1" fig-align="center" height="60%" width="60%"}
-
-### RStudio can be run over a server on your browser in addition to a <br> local desktop application {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: columns
-::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
--   RStudio Desktop is an R IDE that works with the version of R you have installed on your local Windows, Mac OS X, or Linux workstation
-
--   RStudio Server is a stateful Linux server application that provides a web interface to the version of R running on the server
-:::
-
-::: r-stack
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-:::
-:::
-
-::: {.column width="50%"}
-::: {.fragment fragment-index="4"}
-RStudio Server is preferred over RStudio Desktop when:
-
--   You want to use R without installing it on your local workstation
--   You need more resources (e.g. CPU, memory) than is available on your workstation
-
-In an enterprise setting, RStudio Server is preferred:
-
--   Access control to data and applications is centralized
--   R environment is standardized across the team(s)
-:::
-:::
-:::
-
-### Shiny Apps can be deployed to Shiny Servers {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
--   Shiny is an R package that makes it easy to build interactive web applications (apps) straight from R
--   A Shiny app is a web page (ui) connected to a computer running a stateful live R session (server)
-
-::: r-stack
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="70%" width="70%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="3" fig-align="center" height="200%" width="200%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="4" fig-align="center" height="200%" width="200%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="5" fig-align="center" height="200%" width="200%"}
-:::
-
-### The OpenCPU server exposes a simple but powerful HTTP api for RPC and data interchange with R {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: columns
-::: {.column width="50%"}
-::: {.fragment fragment-index="1"}
--   A system for embedded scientific computing and reproducible research with R
-
--   Provides a reliable and scalable foundation for statistical services or building R web applications
-
--   The OpenCPU server runs either as a single-user development server within the interactive R session, or as a multi-user Linux stack based on Apache2
-
--   allows concurrent execution of R code using the standard R interpreter (GNU R)
-
--   The entire system is fully open source and permissively licensed
-
--   A test page is avaible to explore the API features
-:::
-:::
-
-::: {.column width="50%"}
-::: {.fragment fragment-index="2"}
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-:::
-:::
-:::
-
-### The OpenCPU test page allow us to simulate the API for RESTful and remote procedure calls with R {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: r-stack
-![](ResearchTopics_files/img/placeholder.png){.fragment fig-align="center" height="150%" width="150%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fig-align="center" height="220%" width="220%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fig-align="center" height="220%" width="220%"}
-
-![](ResearchTopics_files/img/placeholder.png){.fragment fig-align="center" height="120%" width="120%"}
-:::
-
-### The OpenCPU API is well-documented {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-<iframe src="https://www.opencpu.org/api.html#api-root" width="1800px" height="900px">
+<iframe src="https://7w4750-tyrone-mariano.shinyapps.io/myapp/" width="1800px" height="900px">
 
 </iframe>
+
+
+## Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+- What is the type of Seurat Object
+- Why are we doing dimensionality for scRNAseq data, what is its significance?
+
 
 # ACCOMPLISHMENTS {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## Research Objectives {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## Answering the Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-::: panel-tabset
-### Primary
+## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
--   Deploy RStudio server, Shiny Server and OpenCPU server in same instance
+::: {.panel-tabset style="height: 800px;"}
 
--   Create bioinformatics wrappers, functions, tools, widgets or pipelines with an API using OpenCPU server
+### Improvements
 
--   Create your ow R packages for the R functions and wrappers
-
--   Utilize various project management platforms and tools
-
-### Secondary
-
--   Deploy the servers using docker or other container technologies
-
--   Create dashboard/s using Shiny and other interactive reactive frameworks in R
-
--   Create unit tests for the functions and API calls in the self-authored R packages and publish in Github
-
--   Deploy a CI/CD infrastructure with Github webhooks
+::::{.columns}
+:::{.column width="34%"}
+![](ResearchTopics_files/img/pkg1.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
 :::
 
-## Presentation Output {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+:::{.column width="33%"}
+![](ResearchTopics_files/img/pkg2.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
+:::
 
-As a minimum, HTML slides output (Rmarkdown) with interactive graphs :)
+:::{.column width="33%"}
+![](ResearchTopics_files/img/pkg3.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
+:::
+::::
 
-<iframe src="ResearchTopics_files/3d-umap-7.html" width="1800px" height="800px">
+- Wrapper functions for half of the pipeline steps (up to scaling)
 
-</iframe>
+### New Achievements
+
+:::: {.columns}
+::: {.column width="50%"}
+![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
+:::
+
+::: {.column width="50%"}
+![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
+:::
+
+::::
+- Draft of Docker image layers
+
+:::
+
+
 
 ## Project Management {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -272,7 +124,19 @@ As a minimum, HTML slides output (Rmarkdown) with interactive graphs :)
 
 # CHALLENGES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
+## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+- Package installation
+- Docker image creation
+- Pipeline steps are stil contained in different individual packages
+
 # FOR NEXT WEEK {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+- Finish R package for all the pipeline steps by merging all our current packages
+- Finalize the Docker image layer
+- Finalize the shiny app
 
 # REFERENCES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -296,3 +160,5 @@ As a minimum, HTML slides output (Rmarkdown) with interactive graphs :)
     -   <https://support.posit.co/hc/en-us/article_attachments/208601268/Screen_Shot_2016-06-22_at_4.27.16_PM.png>
     -   <https://techcommunity.microsoft.com/t5/image/serverpage/image-id/98385i87A1535FA614E70C>
     -   <https://techcommunity.microsoft.com/t5/image/serverpage/image-id/98386iF5E95F1277EB1680>
+    
+# Thank You! {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
