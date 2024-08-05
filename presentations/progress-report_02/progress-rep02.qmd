@@ -35,27 +35,23 @@ title-slide-attributes:
 
 ## Last Week's Accomplishments {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-
 ::: {.fragment fragment-index="2"}
-- Proof of concept for building customized R package
+-   Proof of concept on building customized R package
 :::
-
-
 
 ::: {.fragment fragment-index="3"}
-- Created a dashboard for some parts of the pipeline using Shiny 
+-   Created a dashboard for some parts of the pipeline using Shiny and deploying it with shinyapps.io
 :::
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
 :::
 
 ::: {.column width="50%"}
-![](ResearchTopics_files/img/placeholder.png){.fragment fragment-index="3" fig-align="center" height="100%" width="100%"}
+![](ResearchTopics_files/img/shiny.png){.fragment fragment-index="3" fig-align="center" height="150%" width="150%"}
 :::
-
-::::
+:::
 
 ## scRNAseq Analyzer {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -63,42 +59,98 @@ title-slide-attributes:
 
 </iframe>
 
-
 ## Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-- What is the type of Seurat Object
-- Why are we doing dimensionality for scRNAseq data, what is its significance?
-
+-   What does Seurat object looks like?
+-   Why are we doing dimensionality reduction for scRNAseq data? What is its significance?
 
 # ACCOMPLISHMENTS {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ## Answering the Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+::: {.fragment fragment-index="2"}
+-   What does Seurat object looks like?
+:::
+
+![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
+
+## Answering the Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+::: fragment
+-   Why are we doing dimensionality reduction for scRNAseq data? What is its significance?
+- Curse of dimensionality
+:::
+
+```{r setup, echo=F,include=F}
+library(Seurat)
+library(tidyverse)
+library(shiny)
+library(DT)
+library(crosstalk)
+library(plotly)
+
+pbmc <- readRDS("~/Desktop/pgc-dim-red/presentations/progress-report_02/ResearchTopics_files/pbmc_tutorial1.rds")
+pbmc <- RunTSNE(pbmc, dims = 1:10, dim.embed = 3)
+```
+
+```{r}
+# Extract tSNE information from Seurat Object
+tsne_1 <- pbmc[["tsne"]]@cell.embeddings[,1]
+tsne_2 <- pbmc[["tsne"]]@cell.embeddings[,2]
+tsne_3 <- pbmc[["tsne"]]@cell.embeddings[,3]
+
+# Prepare a dataframe for cell plotting
+plot.data <- FetchData(object = pbmc, vars = c("tSNE_1", "tSNE_2", "tSNE_3", "seurat_clusters"))
+
+# Make a column of row name identities (these will be your cell/barcode names)
+plot.data$label <- paste(rownames(plot.data))
+```
+
+```{r}
+
+
+
+plot <- plot_ly(data = plot.data, 
+        x = ~tSNE_1, y = ~tSNE_2, z = ~tSNE_3, 
+        color = ~seurat_clusters, 
+        type = "scatter3d", 
+        mode = "markers", 
+        marker = list(size = 5, width=2), # controls size of points
+        text=~label, #This is that extra column we made earlier for which we will use
+        hoverinfo="text") #When you visualize your plotly object, hovering your mouse pointer over a point shows cell names
+
+plot$layout$width <- 5000  # Adjust width as needed
+plot$layout$height <- 50000 # Adjust height as needed
+
+plot
+
+
+```
+
+##  {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ::: {.panel-tabset style="height: 800px;"}
-
 ### Improvements
 
-::::{.columns}
-:::{.column width="34%"}
+::: columns
+::: {.column width="34%"}
 ![](ResearchTopics_files/img/pkg1.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
 :::
 
-:::{.column width="33%"}
+::: {.column width="33%"}
 ![](ResearchTopics_files/img/pkg2.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
 :::
 
-:::{.column width="33%"}
+::: {.column width="33%"}
 ![](ResearchTopics_files/img/pkg3.png){.fragment fragment-index="1" fig-align="center" height="100%" width="100%"}
 :::
-::::
+:::
 
-- Wrapper functions for half of the pipeline steps (up to scaling)
+-   Wrapper functions for half of the pipeline steps (up to scaling)
 
 ### New Achievements
 
-:::: {.columns}
+::: columns
 ::: {.column width="50%"}
 ![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
 :::
@@ -106,13 +158,10 @@ title-slide-attributes:
 ::: {.column width="50%"}
 ![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
 :::
-
-::::
-- Draft of Docker image layers
-
 :::
 
-
+-   Draft of Docker image layers
+:::
 
 ## Project Management {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -124,19 +173,19 @@ title-slide-attributes:
 
 # CHALLENGES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+##  {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-- Package installation
-- Docker image creation
-- Pipeline steps are stil contained in different individual packages
+-   Package installation
+-   Docker image creation
+-   Pipeline steps are stil contained in different individual packages
 
 # FOR NEXT WEEK {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+##  {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-- Finish R package for all the pipeline steps by merging all our current packages
-- Finalize the Docker image layer
-- Finalize the shiny app
+-   Finish R package for all the pipeline steps by merging all our current packages
+-   Finalize the Docker image layer
+-   Finalize the shiny app
 
 # REFERENCES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -149,16 +198,6 @@ title-slide-attributes:
 -   Web Articles:
 
     -   <https://pmirla.github.io/archive/opencpu/index.html>
-    -   <https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.html>
+    -   \<https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.htm
 
-## REFERENCES {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
--   Image Sources:
-
-    -   <https://revolution-computing.typepad.com/.a/6a010534b1db25970b01bb086253c2970d-500wi>
-    -   <https://support.posit.co/hc/en-us/article_attachments/208601268/Screen_Shot_2016-06-22_at_4.27.16_PM.png>
-    -   <https://support.posit.co/hc/en-us/article_attachments/208601268/Screen_Shot_2016-06-22_at_4.27.16_PM.png>
-    -   <https://techcommunity.microsoft.com/t5/image/serverpage/image-id/98385i87A1535FA614E70C>
-    -   <https://techcommunity.microsoft.com/t5/image/serverpage/image-id/98386iF5E95F1277EB1680>
-    
 # Thank You! {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
