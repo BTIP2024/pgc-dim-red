@@ -1,0 +1,66 @@
+---
+title: "PGC Internship 2024: R Team - 2nd Progress Report"
+author: "[Mentor] Mark Joseph Garrovillas, RCh, Tyrone Mariano, Leda Celeste Samin"
+date: last-modified
+institution: "Core Facility for Bioinformatics"
+format: 
+  revealjs:
+    date-format: long
+    slide-number: c/t
+    width: 1920
+    height: 1080
+    theme: custom.scss
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    preview-links: auto
+    slide-level: 3
+    multiplex: true
+    chalkboard: 
+      boardmarker-width: 5
+    search:
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+title-slide-attributes:
+      data-background: progress-rep03_files/img/title-slide.png
+      data-background-size: cover
+      data-background-color: "#000"
+      transition: slide
+      background-transition: fade
+      transition-speed: slow
+---
+
+# PROJECT RECAP {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+## These are the accomplishments made last week {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+::: {.fragment fragment-index="2"}
+-   Created customized R package containing wrapper functions for Seurat pre-processing pipeline
+:::
+
+
+## Questions that were posed during the previous presentation{data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+-   Are we going to use Docker for containerizing the customized package or the Shiny app?
+
+# ACCOMPLISHMENTS {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+# CHALLENGES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+# FOR NEXT WEEK {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+# REFERENCES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+## REFERENCES {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+-   Journal Articles:
+
+    -   <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9148156/>
+
+-   Web Articles:
+
+    -   <https://pmirla.github.io/archive/opencpu/index.html>
+    -   \<https://www.bioconductor.org/packages/release/workflows/vignettes/sequencing/inst/doc/sequencing.htm
+
+# Thank You! {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
