@@ -33,14 +33,14 @@ title-slide-attributes:
 
 # PROJECT RECAP {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## Last Week's Accomplishments {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## These are the accomplishments made last week {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ::: {.fragment fragment-index="2"}
 -   Proof of concept on building customized R package
 :::
 
 ::: {.fragment fragment-index="3"}
--   Created a dashboard for some parts of the pipeline using Shiny and deploying it with shinyapps.io
+-   Created a dashboard for some parts of the pipeline using Shiny and deployed it with shinyapps.io
 :::
 
 ::: columns
@@ -59,22 +59,14 @@ title-slide-attributes:
 
 </iframe>
 
-## Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## Questions that were posed during the previous presentation{data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 -   What does Seurat object looks like?
 -   Why are we doing dimensionality reduction for scRNAseq data? What is its significance?
 
 # ACCOMPLISHMENTS {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## Answering the Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
-::: {.fragment fragment-index="2"}
--   What does Seurat object looks like?
-:::
-
-![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-
-## Answering the Questions {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## Answering the conceptual questions asked {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ::: fragment
 -   Why are we doing dimensionality reduction for scRNAseq data? What is its significance?
@@ -89,7 +81,7 @@ library(DT)
 library(crosstalk)
 library(plotly)
 
-pbmc <- readRDS("~/Desktop/pgc-dim-red/presentations/progress-report_02/ResearchTopics_files/pbmc_tutorial1.rds")
+pbmc <- readRDS("~/Desktop/pgc-dim-red/presentations/progress-report_02/ResearchTopics_files/pbmc_tutorial.rds")
 pbmc <- RunTSNE(pbmc, dims = 1:10, dim.embed = 3)
 ```
 
@@ -148,43 +140,46 @@ plot
 
 -   Wrapper functions for half of the pipeline steps (up to scaling)
 
-### New Achievements
+### New Accomplishments
 
-::: columns
-::: {.column width="50%"}
-![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-:::
-
-::: {.column width="50%"}
-![](ResearchTopics_files/img/vcftocsv.png){.fragment fragment-index="2" fig-align="center" height="100%" width="100%"}
-:::
-:::
+![](ResearchTopics_files/img/docker.png){.fragment fragment-index="2" fig-align="center" height="50%" width="50%"}
 
 -   Draft of Docker image layers
+
 :::
-
-## Project Management {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
-
--   Trello Kanban Boards will be used to track project progress
-
--   Burndown Charts will be used to track completed tasks
-
--   Github for source code management
 
 # CHALLENGES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-##  {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## Challenges encountered during this week {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
+::: {.fragment fragment-index="1" .highlight-red}
 -   Package installation
+:::
+
+::: {.fragment fragment-index="2" .highlight-red}
 -   Docker image creation
--   Pipeline steps are stil contained in different individual packages
+:::
+
+::: {.fragment fragment-index="3" .highlight-red}
+-   Packages for the pipeline steps are still contained in different individual and separate repositories
+:::
+
+
+
+:::{.r-stack}
+
+![](ResearchTopics_files/img/error.png){.fragment fragment-index="1" height="350" width="650"}
+![](ResearchTopics_files/img/steep.webp){.fragment fragment-index="2" height="550" width="350"}
+![](ResearchTopics_files/img/repo.png){.fragment fragment-index="3" height="350" width="650"}
+
+:::
 
 # FOR NEXT WEEK {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-##  {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## List of tasks for this week {data-background="ResearchTopics_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
--   Finish R package for all the pipeline steps by merging all our current packages
 -   Finalize the Docker image layer
+-   Finish R package for all the pipeline steps by merging all our current packages
 -   Finalize the shiny app
 
 # REFERENCES {data-background="ResearchTopics_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
