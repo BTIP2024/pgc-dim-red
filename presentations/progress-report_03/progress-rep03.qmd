@@ -33,6 +33,13 @@ title-slide-attributes:
 
 # PROJECT RECAP {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
+Develop and implement the bioinformatics functions, tools, widgets, or pipelines
+1. Deploy the RStudio, Shiny, and OpenCPU servers using Docker
+  - Easy development and access: OpenCPU, Shiny, & R Studio can be accessed by the user in their browser using Docker
+  - Application deployment: From git, an isolated standalone application can be started via Docker
+2. Expose as a stateless microservice using RESTful API and RPC the major steps in the scRNAseq pipeline and their visualizations
+3. Develop an interactive dashboard/reactive framework in Shiny for the scRNA pipeline
+
 ## Using the Seurat scRNAseq preprocessing pipeline and visualize the data in lower dimensions (t-SNE) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ```{r setup, echo=F}
@@ -72,10 +79,6 @@ plot
 
 ## Using the Seurat scRNAseq preprocessing pipeline and visualize the data in lower dimensions (UMAP) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-::: {.fragment fragment-index="2"}
--   Created customized R package containing wrapper functions for Seurat pre-processing pipeline
-:::
-
 
 ## Questions that were posed during the previous presentation{data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -83,9 +86,56 @@ plot
 
 # ACCOMPLISHMENTS {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
+## Successful deployment of RStudio, Shiny, and OpenCPU servers using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![]("progress-rep03_files/img/runningimages.png"){.fragment fig-align="center" height=50% width=50%}
+
+## Access to servers via Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![Access to RStudio]("progress-rep03_files/img/rstudioserver.png"){.fragment fig-align="center" height=50% width=50%}
+
+## Access to servers via Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![Access to OpenCPU]("progress-rep03_files/img/opencpuweb.png"){.fragment fig-align="center" height=50% width=50%}
+
+# Running the pipeline {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![Overview of the scRNAseq preprocessing pipeline]("progress-rep03_files/img/overviewpipeline.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![OpenCPU web browser]("progress-rep03_files/img/opencpubrowser.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![1: Creating the Seurat Object]("progress-rep03_files/img/createseuratobject.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![1: Creating the Seurat Object]("progress-rep03_files/img/create_output.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![2: Quality Control]("progress-rep03_files/img/qualitycontrol.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![2: Quality Control]("progress-rep03_files/img/qc_output.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![5: PCA]("progress-rep03_files/img/pca.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![5: PCA]("progress-rep03_files/img/pca_output.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![6: T-SNE]("progress-rep03_files/img/tsne.png"){.fragment fig-align="center" height=50% width=50%}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+![6: T-SNE]("progress-rep03_files/img/tsne_output.png"){.fragment fig-align="center" height=50% width=50%}
+
 # CHALLENGES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
+- Challenges in writing and troubleshooting scripts
+- Familiarization with Docker via "doing" which included a lot of mistakes
+
 # FOR NEXT WEEK {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+- Develop more descriptive package and function names
+- Improve the script functionality
+- Create API documentation
+- Deploy Shiny servers via Docker
 
 # REFERENCES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
