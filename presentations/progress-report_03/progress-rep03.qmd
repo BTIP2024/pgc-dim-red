@@ -95,11 +95,8 @@ plot
 ## Access to servers via Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 ![Access to OpenCPU]("progress-rep03_files/img/opencpuweb.png"){.fragment fig-align="center" height=50% width=50%}
 
-# Running the pipeline {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+# RPC major steps in scRNAseq pipeline via OpenCPU using Docker: Running the pipeline {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 ![Overview of the scRNAseq preprocessing pipeline]("progress-rep03_files/img/overviewpipeline.png"){.fragment fig-align="center" height=50% width=50%}
-
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![OpenCPU web browser]("progress-rep03_files/img/opencpubrowser.png"){.fragment fig-align="center" height=50% width=50%}
 
 ## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 ![1: Creating the Seurat Object]("progress-rep03_files/img/createseuratobject.png"){.fragment fig-align="center" height=50% width=50%}
