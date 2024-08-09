@@ -1,6 +1,6 @@
 ---
-title: "PGC Internship 2024: R Team - 2nd Progress Report"
-author: "[Mentor] Mark Joseph Garrovillas, RCh, Tyrone Mariano, Leda Celeste Samin"
+title: "PGC Internship 2024: R Team - 3rd Progress Report"
+author: "[Mentor] Mark Joseph Garrovillas, RCh, Leda Celeste Samin, Tyrone Mariano"
 date: last-modified
 institution: "Core Facility for Bioinformatics"
 format: 
@@ -34,11 +34,20 @@ title-slide-attributes:
 # PROJECT RECAP {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
 Develop and implement the bioinformatics functions, tools, widgets, or pipelines
-1. Deploy the RStudio, Shiny, and OpenCPU servers using Docker
-  - Easy development and access: OpenCPU, Shiny, & R Studio can be accessed by the user in their browser using Docker
-  - Application deployment: From git, an isolated standalone application can be started via Docker
-2. Expose as a stateless microservice using RESTful API and RPC the major steps in the scRNAseq pipeline and their visualizations
-3. Develop an interactive dashboard/reactive framework in Shiny for the scRNA pipeline
+
+1\. Deploy the RStudio, Shiny, and OpenCPU servers using Docker
+
+\- Easy development and access: OpenCPU, Shiny, & R Studio can be accessed by the user in their browser using Docker
+
+\- Application deployment: From git, an isolated standalone application can be started via Docker
+
+2\. Expose as a stateless microservice using RESTful API and RPC the major steps in the scRNAseq pipeline and their visualizations
+
+3\. Develop an interactive dashboard/reactive framework in Shiny for the scRNA pipeline
+
+
+# ACCOMPLISHMENTS {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
 
 ## Using the Seurat scRNAseq preprocessing pipeline and visualize the data in lower dimensions (t-SNE) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -50,7 +59,7 @@ library(DT)
 library(crosstalk)
 library(plotly)
 
-pbmc <- readRDS("~/Desktop/pgc-dim-red/presentations/progress-report_03/progress-rep03_files/data/pbmc_tutorial.rds")
+pbmc <- readRDS("C:/Users/lcbsa/OneDrive/Documents/PGC Training/pgc_internship/pgc-dim-red/presentations/progress-report_03/progress-rep03_files/data/pbmc_tutorial.rds")
 pbmc <- RunTSNE(pbmc, dims = 1:10, dim.embed = 3)
 
 # Extract tSNE information from Seurat Object
@@ -77,64 +86,119 @@ plot <- plot %>% layout(width = "100%", height = 500)
 plot
 ```
 
-## Using the Seurat scRNAseq preprocessing pipeline and visualize the data in lower dimensions (UMAP) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+## Creation of Docker images and containers {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+![](progress-rep03_files/img/recipe.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Successful deployment of RStudio, Shiny, and OpenCPU servers using Docker {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/runningimages.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Access to servers via Docker {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![Access to RStudio via web browser](progress-rep03_files/img/rstudioserver.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Access to servers via Docker {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![Access to OpenCPU via web browser](progress-rep03_files/img/opencpuweb.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## RPC major steps in scRNAseq pipeline via OpenCPU using Docker: Running the pipeline {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/overviewpipeline.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Developed packages which were uploaded in github {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/packages.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Creating the Seurat Object {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/createseuratobject.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Seurat object in .rds format {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/create_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 1: Quality Control {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/qualitycontrol.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Seurat object after QC in .rds format {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/qc_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 1: Visualize the Metrices {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/metrices.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: 2D interactive violin plots (html and png) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/metrices_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 2: Normalization {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/normalization.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Normalized Seurat Object {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/norm_output.png){.fragment fig-align="center" height="100%" width="100%"}
 
 
-## Questions that were posed during the previous presentation{data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+## STEP 3: Identification of Variable Features {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
--   Are we going to use Docker for containerizing the customized package or the Shiny app?
+![](progress-rep03_files/img/variable.png){.fragment fig-align="center" height="100%" width="100%"}
 
-# ACCOMPLISHMENTS {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## Successful deployment of RStudio, Shiny, and OpenCPU servers using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![]("progress-rep03_files/img/runningimages.png"){.fragment fig-align="center" height=50% width=50%}
+## Ouput: Identification of Variable Features {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## Access to servers via Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![Access to RStudio]("progress-rep03_files/img/rstudioserver.png"){.fragment fig-align="center" height=50% width=50%}
+![](progress-rep03_files/img/features.png){.fragment fig-align="center" height="100%" width="100%"}
 
-## Access to servers via Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![Access to OpenCPU]("progress-rep03_files/img/opencpuweb.png"){.fragment fig-align="center" height=50% width=50%}
 
-# RPC major steps in scRNAseq pipeline via OpenCPU using Docker: Running the pipeline {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![Overview of the scRNAseq preprocessing pipeline]("progress-rep03_files/img/overviewpipeline.png"){.fragment fig-align="center" height=50% width=50%}
+## Flowchart on the use of the packages for the scRNAseq pipeline {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+![](progress-rep03_files/img/flow.png){.fragment fig-align="center" height="100%" width="100%"}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![1: Creating the Seurat Object]("progress-rep03_files/img/createseuratobject.png"){.fragment fig-align="center" height=50% width=50%}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![1: Creating the Seurat Object]("progress-rep03_files/img/create_output.png"){.fragment fig-align="center" height=50% width=50%}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![2: Quality Control]("progress-rep03_files/img/qualitycontrol.png"){.fragment fig-align="center" height=50% width=50%}
+## STEP 5: PCA {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![2: Quality Control]("progress-rep03_files/img/qc_output.png"){.fragment fig-align="center" height=50% width=50%}
+![](progress-rep03_files/img/pca.png){.fragment fig-align="center" height="100%" width="100%"}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![5: PCA]("progress-rep03_files/img/pca.png"){.fragment fig-align="center" height=50% width=50%}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![5: PCA]("progress-rep03_files/img/pca_output.png"){.fragment fig-align="center" height=50% width=50%}
+## Output: PCA Plot {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![6: T-SNE]("progress-rep03_files/img/tsne.png"){.fragment fig-align="center" height=50% width=50%}
+![](progress-rep03_files/img/pca_output.png){.fragment fig-align="center" height="100%" width="100%"}
 
-## RPC major steps in scRNAseq pipeline via OpenCPU using Docker {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
-![6: T-SNE]("progress-rep03_files/img/tsne_output.png"){.fragment fig-align="center" height=50% width=50%}
+
+## STEP 7: Non linear dimensionality reduction via t-SNE {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/tsne.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## Output: t-SNE plot {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/tsne_output.png){.fragment fig-align="center" height="100%" width="100%"}
 
 # CHALLENGES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-- Challenges in writing and troubleshooting scripts
-- Familiarization with Docker via "doing" which included a lot of mistakes
+-   Challenges in writing and troubleshooting scripts
+-   Familiarization with Docker via "doing" which included a lot of mistakes
+
 
 # FOR NEXT WEEK {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
 
-- Develop more descriptive package and function names
-- Improve the script functionality
-- Create API documentation
-- Deploy Shiny servers via Docker
+-   Develop more descriptive package and function names
+-   Improve the script functionality
+-   Create API documentation
+-   Deploy a working pipeline to shiny servers via Docker
 
-# REFERENCES {data-background="progress-rep03_files/img/topic-slide.png" transition="fade-in slide-out" transition-speed="slow"}
+
+## Burndown Chart {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+![](progress-rep03_files/img/burndownchart.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## Burndown Chart {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+![](progress-rep03_files/img/burndowngraph.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
 
 ## REFERENCES {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
