@@ -109,6 +109,13 @@ plot
 ## Developed packages which were uploaded in github {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
 ![](progress-rep03_files/img/packages.png){.fragment fig-align="center" height="100%" width="100%"}
+<<<<<<< HEAD
+
+
+## Complete Docker image layers {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/layer.png){.fragment fig-align="center" height="100%" width="100%"}
+
 
 ## Creating the Seurat Object {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
@@ -167,6 +174,66 @@ plot
 
 ![](progress-rep03_files/img/pca_output.png){.fragment fig-align="center" height="100%" width="100%"}
 
+=======
+
+## Creating the Seurat Object {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/createseuratobject.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Seurat object in .rds format {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/create_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 1: Quality Control {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/qualitycontrol.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Seurat object after QC in .rds format {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/qc_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 1: Visualize the Metrices {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/metrices.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: 2D interactive violin plots (html and png) {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/metrices_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## STEP 2: Normalization {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/normalization.png){.fragment fig-align="center" height="100%" width="100%"}
+
+## Output: Normalized Seurat Object {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/norm_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## STEP 3: Identification of Variable Features {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/variable.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## Ouput: Identification of Variable Features {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/features.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## Flowchart on the use of the packages for the scRNAseq pipeline {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+![](progress-rep03_files/img/flow.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+
+## STEP 5: PCA {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/pca.png){.fragment fig-align="center" height="100%" width="100%"}
+
+
+## Output: PCA Plot {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
+
+![](progress-rep03_files/img/pca_output.png){.fragment fig-align="center" height="100%" width="100%"}
+
+>>>>>>> 818c2f5b7f64043e0db172eae03b000e631950ef
 
 ## STEP 7: Non linear dimensionality reduction via t-SNE {data-background="progress-rep03_files/img/subtopic-slide-2-1.png" transition="fade-in slide-out" transition-speed="slow"}
 
