@@ -4,7 +4,7 @@
 write_seurat_object <- function(input) {
    if(grepl('.gz', input)){
       utils::untar(input, files = NULL, list = FALSE, exdir = "sample")
-      new <- list.files(path = "./sample/", pattern = "*.gz", recursive = TRUE, full.names = T)
+      new <- list.files(path = "./sample/", pattern = "*.gz", recursive = TRUE, full.names = T) #WORKED
       
       file.copy(from = new, to = ".", overwrite = T)
       
@@ -114,19 +114,24 @@ pca_seurat <- function(input){
    image <- Seurat::VizDimLoadings(for_pca, dims = 1:2, reduction = "pca")
    ggplot2::ggsave(image, file = "pca_results.png", width = 15, height = 10)
    
-   image1 <- Seurat::DimPlot(for_pca, reduction = "pca") + ggplot2::theme(legend.position = "none")
-   ggplot2::ggsave(image1, file = "pca_plot.png", width = 15, height = 10)
+   image1 <- Seurat::DimPlot(for_pca, reduction = "pca", label = TRUE)
+   ggplot2::ggsave(image1, file = "pca_plot_unlabeled.png", width = 15, height = 10)
    
    image2 <- Seurat::DimHeatmap(for_pca, dims = 1, cells = 500, balanced = TRUE)
    ggplot2::ggsave(image2, file = "heatmap.png", width = 12, height = 12)
    
-   image3 <- Seurat::ElbowPlot(for_pca)
-   ggplot2::ggsave(image3, file = "elbowplot.png", width = 10)
+   image3 <- Seurat::DimHeatmap(for_pca, dims = 1:10, cells = 500, balanced = TRUE)
+   ggplot2::ggsave(image3, file = "heatmap_multiple.png", width = 20, height = 20)
+   
+   image4 <- Seurat::ElbowPlot(for_pca)
+   ggplot2::ggsave(image4, file = "elbowplot.png", width = 10)
 }
 
 # non-linear dimensionality reduction
 clusters_seurat <- function(input){
-   image4 <- Seurat::FindNeighbors(for_pca, dims= 1:15)
+   clustering <- readRDS(input)
+   clustering <- Seurat::RunPCA(clustering, features = Seurat::VariableFeatures(object = clustering))
+   image4 <- Seurat::FindNeighbors(clustering, dims= 1:15)
    image4 <- Seurat::FindClusters(image4, resolution = c(0.1, 0.3, 0.5, 0.7, 1))
    saveRDS(image4, file = "clustersperresolution.rds")
    
@@ -137,16 +142,88 @@ clusters_seurat <- function(input){
 
 tsne_seurat <- function(input){
    for_tsne <- readRDS(input)
+   for_3d <- for_tsne
    
    tsne <- Seurat::RunTSNE(for_tsne, dims = 1:10, dim.embed =2, label = TRUE)
    tsne <- Seurat::DimPlot(tsne, reduction = "tsne")
    ggplot2::ggsave(tsne, file = "tsne_seurat.png", width = 10, height = 10)
+   
+   
+   #for 3D plots
+   tsne_3d <- Seurat::RunTSNE(for_3d, dims = 1:10, dim.embed = 3)
+   
+   tsne_1 <- tsne_3d[["tsne"]]@cell.embeddings[,1]
+   tsne_2 <- tsne_3d[["tsne"]]@cell.embeddings[,2]
+   tsne_3 <- tsne_3d[["tsne"]]@cell.embeddings[,3]
+   
+   plot.data <- Seurat::FetchData(object = tsne_3d, vars = c("tSNE_1", "tSNE_2", "tSNE_3", "seurat_clusters"))
+   
+   plot.data$label <- paste(rownames(plot.data))
+   
+   plotin3d <- plotly::plot_ly(data = plot.data, 
+           x = ~tSNE_1, y = ~tSNE_2, z = ~tSNE_3, 
+           color = ~seurat_clusters,
+           type = "scatter3d", 
+           mode = "markers", 
+           marker = list(size = 5, width=2), # controls size of points
+           text=~label, #This is that extra column we made earlier for which we will use
+           hoverinfo="text")
+   
+   htmltools::save_html(plotin3d, file = "tsne_3dplot.html")
+
 }
 
 umap_seurat <- function(input){
    for_umap <- readRDS(input)
    
-   umap <- Seurat::RunUMAP(for_umap, dims = 1:10, n.components = 2L)
+   umap <- Seurat::RunUMAP(for_umap, dims = 1:10, n.components = 3L)
    umap <- Seurat::DimPlot(umap, reduction = "umap")
    ggplot2::ggsave(umap, file = "tsne_seurat.png", width = 10, height = 10)
+   
+   plot.data <- Seurat::FetchData(object = for_umap, vars = c("umap_1", "umap_2", "umap_3", "seurat_clusters"))
+   
+   plot.data$label <- paste(rownames(plot.data))
+   
+   fig <- plot_ly(data = plot.data, 
+                  x = ~umap_1, y = ~umap_2, z = ~umap_3, 
+                  color = ~seurat_clusters,
+                  type = "scatter3d", 
+                  mode = "markers", 
+                  marker = list(size = 5, width=2), # controls size of points
+                  text=~label, 
+                  hoverinfo="text")
+   
+   htmltools::save_html(fig, file = "umap_3dplot.html")
+}
+
+
+
+# ADDITIONAL ONLY
+
+gene_expression <- function(input, gene){
+   for_tsne <- readRDS(input)
+   gene_input <- gene
+   tsne_3d <- Seurat::RunTSNE(for_tsne, dims = 1:10, dim.embed = 3)
+   
+   tsne_1 <- tsne_3d[["tsne"]]@cell.embeddings[,1]
+   tsne_2 <- tsne_3d[["tsne"]]@cell.embeddings[,2]
+   tsne_3 <- tsne_3d[["tsne"]]@cell.embeddings[,3]
+   
+   plotting.data <- Seurat::FetchData(object = pbmc, vars = c("tSNE_1", "tSNE_2", "tSNE_3", gene_input))
+   
+   plotting.data$changed <- ifelse(test = plotting.data$gene_input <1, yes = plotting.data$gene_input, no = 1)
+   
+   plotting.data$label <- paste(rownames(plotting.data)," - ", plotting.data$gene_input, sep="")
+   
+   ggplot2::plot_ly(data = plotting.data, 
+                    x = ~tSNE_1, y = ~tSNE_2, z = ~tSNE_3, 
+                    color = ~changed,
+                    opacity = .5,
+                    colors = c('darkgreen', 'red'), 
+                    type = "scatter3d", 
+                    mode = "markers",
+                    marker = list(size = 5, width=2), 
+                    text=~label,
+                    hoverinfo="text"
+   )
 }
