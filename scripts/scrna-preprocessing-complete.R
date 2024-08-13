@@ -9,7 +9,13 @@ write_seurat_object <- function(input) {
       file.copy(from = new, to = ".", overwrite = T)
       
       obj <- Seurat::Read10X(data.dir = ".")
-      saveRDS(obj, file = "seurat_object.rds")
+   } else if(grepl('.loom', input)) {
+      obj <- SeuratDisk::Connect(filename = input, mode = "r")
+      obj <- Seurat::as.Seurat(obj)
+   } else if(grepl('.h5ad', input)){
+      SeuratDisk::Convert(input, dest = "h5seurat", overwrite = TRUE)
+      h5seurat <- list.files(path = ".", pattern = ".h5seurat", recursive = TRUE, full.names = T)
+      obj <- SeuratDisk::LoadH5Seurat(h5seurat)
    } else {
       h5_data <- Seurat::Read10X_h5(filename = input, use.names = TRUE, unique.features = TRUE)
       
@@ -18,9 +24,9 @@ write_seurat_object <- function(input) {
          obj <- Seurat::CreateSeuratObject(counts = cts, project = "Seurat", min.cells = 3, min.features = 200)
       } else {
          obj <- Seurat::CreateSeuratObject(counts = h5_data, project = "Seurat", min.cells = 3, min.features = 200)
-      }
-      saveRDS(obj, file = "seurat_object.rds")
+      } 
    }
+   saveRDS(obj, file = "seurat_object.rds")
 }
 
 

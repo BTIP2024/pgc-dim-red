@@ -60,17 +60,17 @@ On your browser, load <http://localhost:8080/ocpu>.
 
 OpenCPU uses the HTTP methods **GET** (to retrieve a source) and **POST** (for RPC which is valid if targeting a script or function).
 
-+----------+----------+-----------------+------------------------------------------------------------+
-| Method   | Target   | Action          | Example                                                    |
-+==========+==========+=================+============================================================+
-| **GET**  | object   | read object     | GET /ocpu/library/writeseuratobject                        |
-+----------+----------+-----------------+------------------------------------------------------------+
-| **POST** | object   | call a function | POST /ocpu/library/writeseuratobject/R/write_seurat_object |
-+----------+----------+-----------------+------------------------------------------------------------+
-| **GET**  | file     | read a file     | GET /ocpu/library/writeseuratobject/DESCRIPTION            |
-|          |          |                 |                                                            |
-|          |          |                 | GET /ocpu/library/writeseuratobject/R/write_seurat_object  |
-+----------+----------+-----------------+------------------------------------------------------------+
++----------+---------+-----------------+----------------------+------------------------------------------------------------+
+| Method   | Target  | Action          | Parameters           | Example                                                    |
++==========+=========+=================+======================+============================================================+
+| **GET**  | object  | read object     | N/A                  | GET /ocpu/library/writeseuratobject                        |
++----------+---------+-----------------+----------------------+------------------------------------------------------------+
+| **POST** | object  | call a function | "input" (input file) | POST /ocpu/library/writeseuratobject/R/write_seurat_object |
++----------+---------+-----------------+----------------------+------------------------------------------------------------+
+| **GET**  | file    | read a file     | N/A                  | GET /ocpu/library/writeseuratobject/DESCRIPTION            |
+|          |         |                 |                      |                                                            |
+|          |         |                 |                      | GET /ocpu/library/writeseuratobject/R/write_seurat_object  |
++----------+---------+-----------------+----------------------+------------------------------------------------------------+
 
 ### **API Endpoints**
 
@@ -122,28 +122,29 @@ Any of the /{package}/ libraries support the following endpoints:
 
 # B. Running a session
 
-Each step of the pipeline have their own functions. These functions can be accessed via their respective packages. A guide on which packages and functions to use are shown below. ![](img/steps.png)
+Each step of the pipeline have their own functions. These functions can be accessed via their respective packages. A guide on which packages and functions to use are shown below. ![](img/steps.png){width="2000" height="339"}
 
-<div style="background-color:lightgray;">
+::: {style="background-color:lightgray;"}
 > To perform the quality control step:
 >
 > > POST ocpu/library/qualitycontrolseurat/R/qc_seurat
 >
-> where **qualitycontrolseurat** is the package name and **qc_seurat** is the function.
-
-</div>
+> where **qualitycontrolseurat** is the package name and **qc_seurat** is the function. Type "input" as the parameter name then upload the respective input file.
+:::
 
 ### **Input, Output: Data and Formats**
 
 These are the extensions of input and output files.
 
-| Format | Content-type  | Notes                                   |
-|--------|---------------|-----------------------------------------|
-| h5     | list/matrix   | input for the writeseuratobject package |
-| gz     | zipped matrix | input for the writeseuratobject package |
-| rds    | seurat object | both input and output of packages       |
-| png    | image         | output only                             |
-| html   | web content   | output only                             |
+| Format | Content-type    | Notes                                   |
+|--------|-----------------|-----------------------------------------|
+| h5     | list/matrix     | input for the writeseuratobject package |
+| gz     | zipped matrix   | input for the writeseuratobject package |
+| loom   | matrix          | input for the writeseuratobject package |
+| h5ad   | annotation data | input for the writeseuratobject package |
+| rds    | seurat object   | both input and output of packages       |
+| png    | image           | output only                             |
+| html   | web content     | output only                             |
 
 # C. After running a session
 
