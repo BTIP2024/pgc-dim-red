@@ -114,45 +114,69 @@ scaling_seurat <- function(input){
 # pca
 pca_seurat <- function(input){
    for_pca <- readRDS(input)
-   for_pca <- Seurat::RunPCA(for_pca, features = Seurat::VariableFeatures(object = for_pca))
-   print(for_pca[["pca"]], dims = 1:5, nfeatures = 5)
+   for_pca <- Seurat::RunPCA(for_pca, features = Seurat::VariableFeatures(for_pca))
+   others <- for_pca
+   # 2D plots no labels
+   library(plotly)
    
-   image <- Seurat::VizDimLoadings(for_pca, dims = 1:2, reduction = "pca")
+   new.cluster.ids <- c("Naive CD4 T", "CD14+ Mono", "Memory CD4 T", "B", "CD8 T", "FCGR3A+ Mono", "NK", "DC", "Platelet")
+   names(new.cluster.ids) <- levels(for_pca)
+   for_pca <- Seurat::RenameIdents(for_pca, new.cluster.ids)
+   plot_pca <- Seurat::DimPlot(for_pca, reduction = "pca", label = FALSE) + ggplot2::xlab("PCA 1") + ggplot2::ylab("PCA 2") + ggplot2::theme(axis.title = element_text(size = 18)) + ggplot2::guides(colour = guide_legend(override.aes = list(size = 10)))
+   
+   ggplot_pca <- ggplotly(plot_pca)
+   
+   htmltools::save_html(ggplot_pca, file = "pca_unlabeled.html")
+   
+   #2D with labels
+   for_pca <- Seurat::FindNeighbors(for_pca, dims=1:15)
+   for_pca <- Seurat::FindClusters(for_pca, resolution = c(0.1, 0.3, 0.5, 0.7, 1))
+   with_labels1 <- Seurat::DimPlot(for_pca, group.by = "RNA_snn_res.0.3", label = TRUE)
+   with_labels2 <- Seurat::DimPlot(for_pca, group.by = "RNA_snn_res.0.1", label = TRUE)
+
+   htmltools::save_html(with_labels1, file = "pca03_labeled_.html")
+   htmltools::save_html(with_labels2, file = "pca01_labeled_.html")
+   
+   
+   image <- Seurat::VizDimLoadings(others, dims = 1:2, reduction = "pca")
    ggplot2::ggsave(image, file = "pca_results.png", width = 15, height = 10)
    
-   image1 <- Seurat::DimPlot(for_pca, reduction = "pca", label = TRUE)
+   image1 <- Seurat::DimPlot(others, reduction = "pca", label = TRUE)
    ggplot2::ggsave(image1, file = "pca_plot_unlabeled.png", width = 15, height = 10)
    
-   image2 <- Seurat::DimHeatmap(for_pca, dims = 1, cells = 500, balanced = TRUE)
+   image2 <- Seurat::DimHeatmap(others, dims = 1, cells = 500, balanced = TRUE)
    ggplot2::ggsave(image2, file = "heatmap.png", width = 12, height = 12)
    
-   image3 <- Seurat::DimHeatmap(for_pca, dims = 1:10, cells = 500, balanced = TRUE)
+   image3 <- Seurat::DimHeatmap(others, dims = 1:10, cells = 500, balanced = TRUE)
    ggplot2::ggsave(image3, file = "heatmap_multiple.png", width = 20, height = 20)
    
-   image4 <- Seurat::ElbowPlot(for_pca)
+   image4 <- Seurat::ElbowPlot(others)
    ggplot2::ggsave(image4, file = "elbowplot.png", width = 10)
 }
 
+   
 # non-linear dimensionality reduction
 clusters_seurat <- function(input){
    clustering <- readRDS(input)
    clustering <- Seurat::RunPCA(clustering, features = Seurat::VariableFeatures(object = clustering))
-   image4 <- Seurat::FindNeighbors(clustering, dims= 1:15)
-   image4 <- Seurat::FindClusters(image4, resolution = c(0.1, 0.3, 0.5, 0.7, 1))
-   saveRDS(image4, file = "clustersperresolution.rds")
-   
-   image4 <- Seurat::DimPlot(image4, group.by = "RNA_snn_res.0.3", label = TRUE)
-   
-   ggplot2::ggsave(image4, file = "dimplot.png", width = 12, height = 10)
+   clustering <- Seurat::FindNeighbors(clustering, dims= 1:15)
+   clustering <- Seurat::FindClusters(clustering, resolution = c(0.1, 0.3, 0.5, 0.7, 1))
+   saveRDS(clustering, file = "clusters.rds")
 }
 
 tsne_seurat <- function(input){
    for_tsne <- readRDS(input)
    for_3d <- for_tsne
+   for_tsne <- Seurat::RunTSNE(for_tsne, dims = 1:10, dim.embed =2, label = TRUE)
    
-   tsne <- Seurat::RunTSNE(for_tsne, dims = 1:10, dim.embed =2, label = TRUE)
-   tsne <- Seurat::DimPlot(tsne, reduction = "tsne")
-   ggplot2::ggsave(tsne, file = "tsne_seurat.png", width = 10, height = 10)
+   new.cluster.ids <- c("Naive CD4 T", "CD14+ Mono", "Memory CD4 T", "B", "CD8 T", "FCGR3A+ Mono", "NK", "DC", "Platelet")
+   names(new.cluster.ids) <- levels(for_tsne)
+   for_tsne <- RenameIdents(for_tsne, new.cluster.ids)
+   tsne_plot <- DimPlot(for_tsne, reduction = "tsne", label = TRUE) + xlab("t-SNE 1") + ylab("t-SNE 2") + theme(axis.title = element_text(size = 18)) + guides(colour = guide_legend(override.aes = list(size = 10)))
+   
+   tsne_plot <- plotly::ggplotly(tsne_plot)
+   
+   htmltools::save_html(tsne_plot, file = "tsne.html")
    
    
    #for 3D plots
@@ -172,7 +196,7 @@ tsne_seurat <- function(input){
            type = "scatter3d", 
            mode = "markers", 
            marker = list(size = 5, width=2), # controls size of points
-           text=~label, #This is that extra column we made earlier for which we will use
+           text=~label, 
            hoverinfo="text")
    
    htmltools::save_html(plotin3d, file = "tsne_3dplot.html")
@@ -181,12 +205,20 @@ tsne_seurat <- function(input){
 
 umap_seurat <- function(input){
    for_umap <- readRDS(input)
+   for_3d <- for_umap
    
    umap <- Seurat::RunUMAP(for_umap, dims = 1:10, n.components = 3L)
-   umap <- Seurat::DimPlot(umap, reduction = "umap")
-   ggplot2::ggsave(umap, file = "tsne_seurat.png", width = 10, height = 10)
+   new.cluster.ids <- c("Naive CD4 T", "CD14+ Mono", "Memory CD4 T", "B", "CD8 T", "FCGR3A+ Mono", "NK", "DC", "Platelet")
+   names(new.cluster.ids) <- levels(umap)
+   umap <- RenameIdents(umap, new.cluster.ids)
+   umap_plot <- DimPlot(umap, reduction = "umap", label = TRUE) + xlab("UMAP 1") + ylab("UMAP 2") + theme(axis.title = element_text(size = 18)) + guides(colour = guide_legend(override.aes = list(size = 10)))
    
-   plot.data <- Seurat::FetchData(object = for_umap, vars = c("umap_1", "umap_2", "umap_3", "seurat_clusters"))
+   umap_plot <- plotly::ggplotly(umap_plot)
+   htmltools::save_html(umap_plot, file = "umap.html")
+   
+   # for 3d plot
+   for_3d <- Seurat::RunUMAP(for_3d, dims = 1:10, n.components = 3L)
+   plot.data <- Seurat::FetchData(object = for_3d, vars = c("umap_1", "umap_2", "umap_3", "seurat_clusters"))
    
    plot.data$label <- paste(rownames(plot.data))
    
@@ -195,7 +227,7 @@ umap_seurat <- function(input){
                   color = ~seurat_clusters,
                   type = "scatter3d", 
                   mode = "markers", 
-                  marker = list(size = 5, width=2), # controls size of points
+                  marker = list(size = 5, width=2),
                   text=~label, 
                   hoverinfo="text")
    
@@ -209,13 +241,14 @@ umap_seurat <- function(input){
 gene_expression <- function(input, gene){
    for_tsne <- readRDS(input)
    gene_input <- gene
+   
    tsne_3d <- Seurat::RunTSNE(for_tsne, dims = 1:10, dim.embed = 3)
    
    tsne_1 <- tsne_3d[["tsne"]]@cell.embeddings[,1]
    tsne_2 <- tsne_3d[["tsne"]]@cell.embeddings[,2]
    tsne_3 <- tsne_3d[["tsne"]]@cell.embeddings[,3]
    
-   plotting.data <- Seurat::FetchData(object = pbmc, vars = c("tSNE_1", "tSNE_2", "tSNE_3", gene_input))
+   plotting.data <- Seurat::FetchData(object = for_tsne, vars = c("tsne_1", "tsne_2", "tsne_3", gene_input))
    
    plotting.data$changed <- ifelse(test = plotting.data$gene_input <1, yes = plotting.data$gene_input, no = 1)
    
@@ -233,3 +266,4 @@ gene_expression <- function(input, gene){
                     hoverinfo="text"
    )
 }
+
