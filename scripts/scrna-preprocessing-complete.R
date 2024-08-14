@@ -118,6 +118,7 @@ pca_seurat <- function(input){
    others <- for_pca
    
    # 2D plots no labels
+   # load library for "element_text" to load properly
    library(plotly)
    
    new.cluster.ids <- c("Naive CD4 T", "CD14+ Mono", "Memory CD4 T", "B", "CD8 T", "FCGR3A+ Mono", "NK", "DC", "Platelet")
